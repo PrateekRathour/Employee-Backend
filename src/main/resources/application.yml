@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: employee-management-system
+  profiles:
+    active: h2  # Change to 'mysql' when connecting to MySQL / Docker / Workbench, or pass --spring.profiles.active=mysql
+  jpa:
+    open-in-view: false
+  mvc:
+    format:
+      date: yyyy-MM-dd
+      date-time: yyyy-MM-dd HH:mm:ss
+
+server:
+  port: ${SERVER_PORT:8080}
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# Swagger OpenAPI Documentation Path
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+
+# Actuator Endpoints for Health & Metrics
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
